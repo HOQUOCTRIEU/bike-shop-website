@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Bike Store Premium</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+
+<div class="checkout-modal" id="checkoutModal">
+    <div class="checkout-content">
+        <h2>Thanh toán</h2>
+
+        <input id="name" placeholder="Họ tên">
+        <input id="phone" placeholder="Số điện thoại">
+        <input id="address" placeholder="Địa chỉ">
+
+        <select id="payment">
+            <option>Thanh toán khi nhận hàng</option>
+            <option>Chuyển khoản</option>
+        </select>
+
+        <button onclick="confirmOrder()">Xác nhận đơn</button>
+        <button onclick="closeCheckout()">Đóng</button>
+    </div>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="logo">🚴 BikeStore</div>
+
+    <nav>
+        <a onclick="scrollToSection('hero')">Trang chủ</a>
+        <a onclick="scrollToSection('productList')">Sản phẩm</a>
+        <a onclick="scrollToSection('footer')">Liên hệ</a>
+    </nav>
+
+    <div class="cart" onclick="toggleCart()">
+        🛒 <span id="count">0</span>
+    </div>
+</header>
+
+<!-- SEARCH -->
+<div class="search">
+    <input type="text" placeholder="🔍 Tìm xe..." onkeyup="searchProduct(this.value)">
+</div>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>XE ĐẠP CAO CẤP</h1>
+        <p>Phong cách – Bền bỉ – Đẳng cấp</p>
+        <button>Mua ngay</button>
+    </div>
+    
+    <div class="hero-image">
+        <img src="bike-image.jpg" alt="Bike">
+    </div>
+</section>
+
+<!-- CATEGORY (FIX this) -->
+<div class="category">
+    <button onclick="filter('all', this)">Tất cả</button>
+    <button onclick="filter('sport', this)">Thể thao</button>
+    <button onclick="filter('mtb', this)">Địa hình</button>
+    <button onclick="filter('road', this)">Xe đua</button>
+    <button onclick="filter('electric', this)">Xe điện</button>
+</div>
+
+<!-- SALE -->
+<div class="sale-banner">
+🔥 Giảm giá đến 30% cho xe đạp tháng này!
+</div>
+
+<h2 class="section-title">🔥 Sản phẩm nổi bật</h2>
+
+<!-- PRODUCTS -->
+<section class="products" id="productList"></section>
+
+<!-- CART -->
+<div class="cart-box" id="cartBox">
+    <h2>🛒 Giỏ hàng</h2>
+    <div id="cartItems"></div>
+    <h3>Tổng: <span id="total">0</span> đ</h3>
+</div>
+
+<!-- MODAL -->
+<div id="modal" class="modal" onclick="closeModal()">
+    <div class="modal-content detail" onclick="event.stopPropagation()">
+
+        <span class="close" onclick="closeModal()">×</span>
+
+        <img id="modalImg">
+
+        <div class="detail-info">
+            <h2 id="modalName"></h2>
+            <p id="modalPrice"></p>
+
+            <p class="desc">
+                Xe đạp cao cấp, khung chắc chắn, phù hợp mọi địa hình, bền đẹp.
+            </p>
+
+            <button onclick="addToCartFromModal()" class="buy-btn">
+                🛒 Thêm vào giỏ
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<!-- CHECKOUT BUTTON -->
+<div class="checkout">
+    <button onclick="checkout()">Thanh toán</button>
+</div>
+
+<!-- CONTACT -->
+<section class="contact" id="footer">
+    <h2>Liên hệ với chúng tôi</h2>
+
+    <div class="contact-container">
+
+        <div class="contact-info">
+            <p>📍 Địa chỉ: 123 Nguyễn Văn A, TP.HCM</p>
+            <p>📞 Hotline: 0123 456 789</p>
+            <p>📧 Email: bikestore@gmail.com</p>
+        </div>
+
+        <div class="contact-form">
+            <input type="text" placeholder="Họ tên">
+            <input type="email" placeholder="Email">
+            <textarea placeholder="Nội dung"></textarea>
+            <button onclick="sendContact()">Gửi liên hệ</button>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    © 2026 BikeStore Premium
+</footer>
+
+<section class="orders">
+    <h2>📦 Lịch sử đơn hàng</h2>
+    <div id="orderList"></div>
+</section>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
